@@ -7,7 +7,7 @@ public class LibroDAO extends DAO<Libro, Long> {
 
     public List<Libro> obtenerLibros() throws Exception {
         try {
-            List<Libro> libros = em.createQuery("SELECT m FROM Libro m", Libro.class)
+            List<Libro> libros = EM.createQuery("SELECT m FROM Libro m", Libro.class)
                     .getResultList();
             return libros;
         } catch (Exception e) {
@@ -18,7 +18,7 @@ public class LibroDAO extends DAO<Libro, Long> {
     public List<Libro> obtenerPorTitulo(String titulo) throws Exception {
 
         try {
-            List<Libro> libros = em.createQuery("SELECT l FROM Libro l WHERE l.titulo LIKE :titulo", Libro.class)
+            List<Libro> libros = EM.createQuery("SELECT l FROM Libro l WHERE l.titulo LIKE :titulo", Libro.class)
                     .setParameter("titulo", titulo)
                     .getResultList();
             return libros;
@@ -29,7 +29,7 @@ public class LibroDAO extends DAO<Libro, Long> {
 
     public List<Libro> obtenerPorAutor(String nombre) {
         try {
-            List<Libro> libros = em.createQuery("SELECT l FROM Libro l "
+            List<Libro> libros = EM.createQuery("SELECT l FROM Libro l "
                     + " WHERE l.autor.nombre LIKE CONCAT('%', :nombre, '%')", Libro.class)
                     .setParameter("nombre", nombre)
                     .getResultList();
@@ -42,7 +42,7 @@ public class LibroDAO extends DAO<Libro, Long> {
     
     public List<Libro> obtenerPorEditorial(String nombre) {
         try {
-            List<Libro> libros = em.createQuery("SELECT l "
+            List<Libro> libros = EM.createQuery("SELECT l "
                     + " FROM Libro l"
                     + " WHERE l.editorial.nombre LIKE CONCAT('%', :nombre, '%')", Libro.class)
                     .setParameter("nombre", nombre)
@@ -53,6 +53,5 @@ public class LibroDAO extends DAO<Libro, Long> {
             throw e;
         }
     }
-    
 
 }

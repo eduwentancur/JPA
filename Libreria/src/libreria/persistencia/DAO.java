@@ -3,50 +3,51 @@ package libreria.persistencia;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-public class DAO<T,PK> {
-
-    protected final EntityManager em = Persistence
-            .createEntityManagerFactory("LibreriaPU")
-            .createEntityManager();
-
+public class DAO<T,PK> implements Crud<T,PK> {
+    
+    protected static final EntityManager EM= Persistence.createEntityManagerFactory("LibreriaPU").createEntityManager();
+    
+    @Override
     public void insert(T entidad) throws Exception {
         try {
-            em.getTransaction().begin();
-            em.persist(entidad);
-            em.getTransaction().commit();
+            EM.getTransaction().begin();
+            EM.persist(entidad);
+            EM.getTransaction().commit();
         } catch (Exception e) {
-            em.getTransaction().rollback();
+            EM.getTransaction().rollback();
             throw new Exception("Error al insertar ");
         }
     }
-
+    @Override
     public void update(T entidad) throws Exception {
         try {
-            em.getTransaction().begin();
-            em.merge(entidad);
-            em.getTransaction().commit();
+            EM.getTransaction().begin();
+            EM.merge(entidad);
+            EM.getTransaction().commit();
         } catch (Exception e) {
-            em.getTransaction().rollback();
+            EM.getTransaction().rollback();
             throw new Exception("Error al actualizar ");
         }
     }
-
+    @Override
     public void delete(T entidad) throws Exception {
         try {
-            em.getTransaction().begin();
-            em.remove(entidad);
-            em.getTransaction().commit();
+            EM.getTransaction().begin();
+            EM.remove(entidad);
+            EM.getTransaction().commit();
         } catch (Exception e) {
-            em.getTransaction().rollback();
+            EM.getTransaction().rollback();
             throw new Exception("Error al insertar ");
         }
     }
+    @Override
     public T getByCode(Class<T>clase,PK pk) throws Exception {
         try {
-            T t= em.find(clase, pk);
+            T t= EM.find(clase, pk);
             return t;
         } catch (Exception e) {
             throw new Exception("Error al buscar por código");
         }
     }
+    
 }

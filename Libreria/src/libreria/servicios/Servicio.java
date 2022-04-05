@@ -29,7 +29,6 @@ public class Servicio {
             System.out.println("14-Mostrar todos los libros");
             System.out.println("0- SALIR");
             opcion = read.nextInt();
-
             switch (opcion) {
                 case 1:
                     System.out.println("Libro nuevo cargado\nLibro:"+libroServicio.IngresarLibro());
@@ -79,11 +78,7 @@ public class Servicio {
                 default:
                     System.out.println("Ingreso opcion incorrecta");
                     break;
-                   
             }
-
         } while (opcion != 0);
-
     }
-    
 }

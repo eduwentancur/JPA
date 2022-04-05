@@ -10,6 +10,7 @@ public class AutorServicio {
     
     private AutorDAO autorDAO = new AutorDAO();
     private Scanner read = new Scanner(System.in, "ISO-8859-1").useDelimiter("\n").useLocale(Locale.US);
+    
     public Autor crearAutor() throws Exception{
         Autor autorNuevo = new Autor();
         System.out.println("Ingrese nombre del AUTOR ");

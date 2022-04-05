@@ -17,7 +17,6 @@ public class LibroServicio {
         Libro libroNuevo = new Libro();
         AutorServicio autorNuevo = new AutorServicio();
         EditorialServicio editorialNuevo = new EditorialServicio();
-        Scanner read = new Scanner(System.in, "ISO-8859-1").useDelimiter("\n").useLocale(Locale.US);
         System.out.println("Ingrese ISBN");
         libroNuevo.setISBN(read.nextLong());
         System.out.println("Ingrese Titulo");
@@ -103,7 +102,6 @@ public class LibroServicio {
                 case 3:
                     editEjemplares(libro);
                     break;
-                    
                 case 4:
                     editEjemplaresPrestados(libro);
                     break;
@@ -117,7 +115,7 @@ public class LibroServicio {
     }
 
     public void editTitulo(Libro libro) throws Exception {
-        System.out.println("Ingrese el nombre nuevo");
+        System.out.println("Ingrese el nuevo titulo");
         libro.setTitulo(read.next());
         libroDAO.update(libro);
         mostrarTodosLosLibros();
@@ -196,3 +194,4 @@ public class LibroServicio {
         }
     }
 }
+

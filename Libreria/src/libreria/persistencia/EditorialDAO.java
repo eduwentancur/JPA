@@ -8,7 +8,7 @@ public class EditorialDAO extends DAO<Editorial,Integer> {
     
     public List<Editorial> mostrarTodosLasEditoriales() throws Exception{
         try {
-            List<Editorial> editoriales = em.createQuery("SELECT e FROM Editorial e", Editorial.class)
+            List<Editorial> editoriales = EM.createQuery("SELECT e FROM Editorial e", Editorial.class)
                     .getResultList();
             return editoriales;
         } catch (Exception e) {
